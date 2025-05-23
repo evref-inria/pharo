@@ -155,6 +155,16 @@ OCCompilationContext class >> optionConstantBlockClosure: aBoolean [
 	^ self writeDefaultOption: #optionConstantBlockClosure value: aBoolean
 ]
 
+{ #category : 'as yet unclassified' }
+OCCompilationContext class >> optionHaltAsBreakpoint [
+	^ self readDefaultOption: #optionHaltAsBreakpoint
+]
+
+{ #category : 'as yet unclassified' }
+OCCompilationContext class >> optionHaltAsBreakpoint: aBoolean [ 
+	^ self writeDefaultOption: #optionHaltAsBreakpoint value: aBoolean
+]
+
 { #category : 'options - settings API' }
 OCCompilationContext class >> optionInlineAndOr [
 	^ self readDefaultOption: #optionInlineAndOr
@@ -336,6 +346,7 @@ OCCompilationContext class >> optionsDescription [
 	(- optionParseErrors 					'Parse syntactically wrong code (interactive and non-interactive')
 	(- optionParseErrorsNonInteractiveOnly 	'Parse syntactically wrong code in non-interactive mode only')
 	(- optionSkipSemanticWarnings 		'Do not warn about semantic problems (e.g. undeclared vars). Used for syntax highlight parsing')
+	(- optionHaltAsBreakpoint 		'Compile message send #halt as breakpoint')
 
 	)
 ]
@@ -522,6 +533,11 @@ OCCompilationContext >> optionCleanBlockClosure [
 { #category : 'options' }
 OCCompilationContext >> optionConstantBlockClosure [
 	^ options includes: #optionConstantBlockClosure
+]
+
+{ #category : 'as yet unclassified' }
+OCCompilationContext >> optionHaltAsBreakpoint [
+	^ options includes: #optionHaltAsBreakpoint
 ]
 
 { #category : 'options' }

@@ -657,6 +657,12 @@ OCMethodNode >> semanticScope: aSemanticScope [
 	self compilationContext semanticScope: aSemanticScope
 ]
 
+{ #category : 'as yet unclassified' }
+OCMethodNode >> sendNodesWithSelector: aSelector [
+
+	^ self sendNodes select: [ :node | node selector = aSelector ]
+]
+
 { #category : 'accessing' }
 OCMethodNode >> source [
 	^source

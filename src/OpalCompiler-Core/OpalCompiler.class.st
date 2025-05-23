@@ -592,6 +592,9 @@ OpalCompiler >> install [
 
 	class instanceSide noteCompilationOf: method meta: class isClassSide.
 
+	compilationContext optionHaltAsBreakpoint ifTrue: [ 
+		self installBreakpointsOnHalts: method ast ].
+
 	^ method
 ]
 
@@ -600,6 +603,15 @@ OpalCompiler >> install: aSource [
 
 	self source: aSource.
 	^ self install
+]
+
+{ #category : 'as yet unclassified' }
+OpalCompiler >> installBreakpointsOnHalts: methodNode [
+
+	| halts |
+	halts := methodNode sendNodesWithSelector: #halt.
+	halts do: [ :halt |
+		DebugPointManager installNew: BreakDebugPoint on: halt receiver ]
 ]
 
 { #category : 'testing' }
